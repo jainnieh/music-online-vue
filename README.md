@@ -6,7 +6,7 @@
 
 2. 打开[插件管理](chrome://extensions/)页面
 
-   ![image-20240219170113942](https://github.com/jainnieh/music-online-vue/tree/main/screenshots/get-start/image-20240219170113942.png)
+   ![image-20240219170113942](https://github.com/jainnieh/music-online-vue/blob/main/screenshots/get-start/image-20240219170113942.png)
 
 3. 开启右上角"Developer mode"(开发者模式)
 
@@ -16,15 +16,15 @@
 
 6. 效果:
 
-   ![image-20240219170415570](https://github.com/jainnieh/music-online-vue/tree/main/screenshots/get-start/image-20240219170415570.png)
+   ![image-20240219170415570](https://github.com/jainnieh/music-online-vue/blob/main/screenshots/get-start/get-start/image-20240219170415570.png)
 
 7. 点击Details, 开启Pin to toolbar
 
-   ![image-20240219170701300](https://github.com/jainnieh/music-online-vue/tree/main/screenshots/get-start/image-20240219170701300.png)
+   ![image-20240219170701300](https://github.com/jainnieh/music-online-vue/blob/main/screenshots/get-start/image-20240219170701300.png)
 
 8. 效果:
 
-   ![image-20240219170740166](https://github.com/jainnieh/music-online-vue/tree/main/screenshots/get-start/image-20240219170740166.png)
+   ![image-20240219170740166](https://github.com/jainnieh/music-online-vue/blob/main/screenshots/get-start/image-20240219170740166.png)
 
 ## 说明
 
@@ -37,17 +37,17 @@
 
 1. 打开[插件管理](chrome://extensions/)页面, 找到Music Collection插件. 点击Details, 首先关闭Site Access中"Automatically allow access on the following sites", 然后开启`*://*.niejian.top/*`
 
-   ![image-20240219172645835](https://github.com/jainnieh/music-online-vue/tree/main/screenshots/get-start/image-20240219172645835.png)
+   ![image-20240219172645835](https://github.com/jainnieh/music-online-vue/blob/main/screenshots/get-start/image-20240219172645835.png)
 
 ## 关闭插件
 
 1. 当插件生效时, 在插件图标上右键, 选择Manage extension
 
-   ![image-20240219171603545](https://github.com/jainnieh/music-online-vue/tree/main/screenshots/get-start/image-20240219171603545.png)
+   ![image-20240219171603545](https://github.com/jainnieh/music-online-vue/blob/main/screenshots/get-start/image-20240219171603545.png)
 
 2. 点击On 右侧按钮
 
-   ![image-20240219171801096](https://github.com/jainnieh/music-online-vue/tree/main/screenshots/get-start/image-20240219171801096.png)
+   ![image-20240219171801096](https://github.com/jainnieh/music-online-vue/blob/main/screenshots/get-start/image-20240219171801096.png)
 
 # 功能介绍
 
@@ -65,7 +65,7 @@ complex歌曲为绑定了特定音频的歌曲. 歌曲除了音频的其它信�
 
 "搜索"图标, 可以搜索b站音频
 
-![image-20240219173159838](https://github.com/jainnieh/music-online-vue/tree/main/screenshots/get-start/image-20240219173159838.png)
+![image-20240219173159838](https://github.com/jainnieh/music-online-vue/blob/main/screenshots/get-start/image-20240219173159838.png)
 
 ### 批量歌曲搜索音频
 
