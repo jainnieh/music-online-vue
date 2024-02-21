@@ -4,7 +4,7 @@
 
 1. 下载插件zip文件,解压
 
-2. 打开[插件管理](chrome://extensions/)页面
+2. 打开插件管理(chrome://extensions/)页面
 
    ![image-20240219170113942](https://github.com/jainnieh/music-online-vue/blob/main/screenshots/get-start/image-20240219170113942.png)
 
