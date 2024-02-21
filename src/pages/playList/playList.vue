@@ -1,7 +1,7 @@
 <template>
   <!--正在播放-->
   <div class="playList">
-    <music-list :list="playlist" list-type="duration" @select="selectItem" @del="deleteItem">
+    <music-list :list="playlist" list-type="playList" @select="selectItem" @del="deleteItem">
       <div slot="listBtn" class="list-btn">
         <span @click="$refs.dialog.show()">清空列表</span>
       </div>
@@ -34,6 +34,9 @@ export default {
   computed: {
     ...mapGetters(['playing', 'playlist', 'currentMusic']),
   },
+  beforeDestroy() {
+    //console.log(' -- playList 组件 --- 死了')
+  },
   methods: {
     // 清空列表事件
     clearList() {
@@ -43,6 +46,7 @@ export default {
     // 播放暂停事件
     selectItem(item, index) {
       if (item.id !== this.currentMusic.id) {
+        //currentIndex
         this.setCurrentIndex(index)
         this.setPlaying(true)
       }
@@ -60,6 +64,6 @@ export default {
       clearPlaylist: 'CLEAR_PLAYLIST',
     }),
     ...mapActions(['removerPlayListItem', 'clearPlayList']),
-  },
+  }
 }
 </script>

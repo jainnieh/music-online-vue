@@ -13,18 +13,28 @@ const routes = [
     redirect: '/music/playlist',
     children: [
       {
+        path: '/music/about', // 教程
+        component: () => import('pages/about/about'),
+      },
+      {
+        name: 'BindSongsAudio',
+        path: '/music/bindSongsAudio', // bindAudio
+        component: () => import('pages/bindSongsAudio/bindSongsAudio'),
+      },
+      {
         path: '/music/playlist', // 正在播放列表
         component: () => import('pages/playList/playList'),
-        meta: {
-          keepAlive: true,
-        },
+      },
+      {
+        name: 'bili-search',
+        path: '/music/bilisearch', // 正在播放列表
+        component: () => import('pages/bili/bilisearch'),
       },
       {
         path: '/music/userlist', // 我的歌单
-        component: () => import('pages/userList/userList'),
+        component: () => import('pages/userList/userList.vue'),
         meta: {
           title: '我的歌单',
-          keepAlive: true,
         },
       },
       {
@@ -32,11 +42,10 @@ const routes = [
         component: () => import('pages/topList/topList'),
         meta: {
           title: '排行榜',
-          keepAlive: true,
         },
       },
       {
-        path: '/music/details/:id', // 音乐详情列表
+        path: '/music/details/:platform/:id', // 音乐详情列表
         component: () => import('pages/details/details'),
       },
       {
@@ -51,7 +60,6 @@ const routes = [
         component: () => import('pages/search/search'),
         meta: {
           title: '搜索',
-          keepAlive: true,
         },
       },
       {

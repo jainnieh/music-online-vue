@@ -11,7 +11,7 @@
           class="list-item"
           :title="`${item.name}-${item.updateFrequency}`"
         >
-          <router-link :to="{ path: `/music/details/${item.id}` }" tag="div" class="topList-item">
+          <router-link :to="{ path: `/music/details/netease/${item.id}` }" tag="div" class="topList-item">
             <div class="topList-img">
               <img v-lazy="`${item.coverImgUrl}?param=300y300`" class="cover-img" />
             </div>
@@ -22,7 +22,7 @@
       <div class="topList-head">热门歌单</div>
       <div class="topList-content">
         <div v-for="(item, index) in hotList" :key="index" class="list-item" :title="item.name">
-          <router-link :to="{ path: `/music/details/${item.id}` }" tag="div" class="topList-item">
+          <router-link :to="{ path: `/music/details/netease/${item.id}` }" tag="div" class="topList-item">
             <div class="topList-img">
               <img v-lazy="`${item.picUrl}?param=300y300`" class="cover-img" />
             </div>
@@ -35,12 +35,12 @@
 </template>
 
 <script>
-import { getToplistDetail, getPersonalized } from 'api'
+import { getToplistDetail, getPersonalized } from 'api/index'
 import MmLoading from 'base/mm-loading/mm-loading'
 import { loadMixin } from '@/utils/mixin'
 
 export default {
-  name: 'PlayList',
+  name: 'TopList',
   components: {
     MmLoading,
   },
@@ -53,12 +53,15 @@ export default {
   },
   created() {
     Promise.all([getToplistDetail(), getPersonalized()])
-      .then(([topList, hotList]) => {
+      .then(([topList, personalizedList]) => {
         this.list = topList.list.filter((v) => v.ToplistType)
-        this.hotList = hotList.result.slice()
+        this.hotList = personalizedList.result.slice()
         this._hideLoad()
       })
       .catch(() => {})
+  },
+  beforeDestroy() {
+    //console.log(' -- topList 组件 --- 死了')
   },
 }
 </script>

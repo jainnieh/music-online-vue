@@ -1,7 +1,7 @@
 <template>
   <!--我听过的（播放历史）-->
   <div class="historyList">
-    <music-list :list="historyList" list-type="duration" @select="selectItem" @del="deleteItem">
+    <music-list :list="historyList"  list-type="history" @select="selectItem" @del="deleteItem">
       <div slot="listBtn" class="list-btn">
         <span @click="$refs.dialog.show()">清空列表</span>
       </div>
@@ -16,10 +16,9 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions } from 'vuex'
-import MusicList from 'components/music-list/music-list'
+import {mapGetters, mapMutations, mapActions} from 'vuex'
 import MmDialog from 'base/mm-dialog/mm-dialog'
-
+import MusicList from 'components/music-list/music-list'
 export default {
   name: 'HistoryList',
   components: {
@@ -50,7 +49,7 @@ export default {
       this.$mmToast('删除成功')
     },
     ...mapMutations({
-      setPlaying: 'SET_PLAYING',
+      //setPlaying: 'SET_PLAYING', // 没人调用??
     }),
     ...mapActions(['selectPlay', 'clearHistory', 'removeHistory']),
   },

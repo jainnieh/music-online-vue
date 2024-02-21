@@ -14,6 +14,7 @@ process.env.VUE_APP_VERSION = require('./package.json').version
 process.env.VUE_APP_UPDATE_TIME = dayjs().locale('zh-cn').format('YYYY-MM-DD')
 
 module.exports = defineConfig({
+  lintOnSave:false,
   publicPath: '',
   chainWebpack(config) {
     config.resolve.alias

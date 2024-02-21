@@ -3,7 +3,7 @@
     <!--封面-->
     <dl class="music-info">
       <dt>
-        <img :src="musicPicUrl" />
+        <img referrerpolicy="no-referrer" :src="currentMusic.image" />
       </dt>
       <template v-if="currentMusic.id">
         <dd>歌曲名：{{ currentMusic.name }}</dd>
@@ -11,11 +11,11 @@
         <dd>专辑名：{{ currentMusic.album }}</dd>
       </template>
       <template v-else>
-        <dd>mmPlayer在线音乐播放器</dd>
+        <dd>Music Collection 在线音乐播放器</dd>
         <dd>
-          <a class="hover" target="_blank" href="https://github.com/maomao1996">
+          <a class="hover" target="_blank" href="https://github.com/jainnieh/music-online-vue">
             <mm-icon type="github" :size="14" />
-            &nbsp;茂茂
+            &nbsp;JainNieh
           </a>
         </dd>
       </template>
@@ -24,13 +24,14 @@
     <div ref="musicLyric" class="music-lyric">
       <div class="music-lyric-items" :style="lyricTop">
         <p v-if="!currentMusic.id">还没有播放音乐哦！</p>
-        <p v-else-if="nolyric">暂无歌词！</p>
-        <template v-else-if="lyric.length > 0">
+        <p v-else-if="lyricType === 0"> 没找到歌词 </p>
+        <template v-else-if="lyricType === 1">
           <p v-for="(item, index) in lyric" :key="index" :class="{ on: lyricIndex === index }">
             {{ item.text }}
           </p>
         </template>
-        <p v-else>歌词加载失败！</p>
+        <p v-else-if="lyricType === 2"> 此歌曲为没有填词的纯音乐，请您欣赏 </p>
+        <p v-else> 歌词功能出错了 </p>
       </div>
     </div>
   </div>
@@ -46,6 +47,10 @@ export default {
     lyric: {
       type: Array,
       default: () => [],
+    },
+    lyricType: {
+      type: Number,
+      default: 0
     },
     // 是否无歌词
     nolyric: {
@@ -64,22 +69,18 @@ export default {
     }
   },
   computed: {
-    musicPicUrl() {
-      return this.currentMusic.id
-        ? `${this.currentMusic.image}?param=300y300`
-        : require('../../assets/img/player_cover.png')
-    },
     lyricTop() {
       return `transform :translate3d(0, ${-34 * (this.lyricIndex - this.top)}px, 0)`
     },
     ...mapGetters(['currentMusic']),
   },
   mounted() {
-    window.addEventListener('resize', () => {
-      clearTimeout(this.resizeTimer)
-      this.resizeTimer = setTimeout(() => this.clacTop(), 60)
-    })
-    this.$nextTick(() => this.clacTop())
+    //这里应该先监测是否有正在播放的音乐
+    // window.addEventListener('resize', () => {
+    //   clearTimeout(this.resizeTimer)
+    //   this.resizeTimer = setTimeout(() => this.clacTop(), 60)
+    // })
+    // this.$nextTick(() => this.clacTop())
   },
   methods: {
     // 计算歌词居中的 top值
@@ -146,7 +147,9 @@ export default {
     rgba(255, 255, 255, 0.6) 85%,
     rgba(255, 255, 255, 0) 100%
   );
+  // @TODO 样式bug: 从全屏歌词切换会右边歌词, 右边歌词位置出错. 不过不影响使用, 因为很少人会触发这种bug
   .music-lyric-items {
+    margin-top: 136px; //添加这个后, 右手边歌词居中了, 但是导致全屏歌词向下偏移
     text-align: center;
     line-height: 34px;
     font-size: @font_size_small;

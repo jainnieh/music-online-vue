@@ -3,7 +3,7 @@ import {
   setHistoryList,
   removeHistoryList,
   setMode,
-  setUserId,
+  setUserId, delCustomListMap, addSongToCustomList, addMusicList, removeSongFromCustomList,
 } from '@/utils/storage'
 import * as types from './mutation-types'
 
@@ -33,8 +33,10 @@ export const selectAddPlay = function ({ commit, state }, music) {
   let index = findIndex(list, music)
   // 当前播放列表有待插入的音乐时，直接改变当前播放音乐的索引值
   if (index > -1) {
+    //console.log("当前播放列表有待插入的音乐")
     commit(types.SET_CURRENTINDEX, index)
   } else {
+    //console.log("将播放音乐插入playList头")
     list.unshift(music)
     commit(types.SET_PLAYLIST, list)
     commit(types.SET_ORDERLIST, list)
@@ -52,6 +54,7 @@ export const clearPlayList = function ({ commit }) {
 }
 
 // 删除正在播放列表中的歌曲
+//@TODO 这里会改变currentMusic,就会触发music.vue中的watch.但是为什么这里修改currentIndex后没有立刻触发watch??
 export const removerPlayListItem = function ({ commit, state }, { list, index }) {
   let currentIndex = state.currentIndex
   if (index < state.currentIndex || list.length === state.currentIndex) {
@@ -60,6 +63,7 @@ export const removerPlayListItem = function ({ commit, state }, { list, index })
   }
   commit(types.SET_PLAYLIST, list)
   commit(types.SET_ORDERLIST, list)
+  //console.log('action 修改了playlist')
   if (!list.length) {
     commit(types.SET_PLAYING, false)
   } else {
@@ -86,3 +90,20 @@ export const setPlayMode = function ({ commit }, mode) {
 export const setUid = function ({ commit }, uid) {
   commit(types.SET_UID, setUserId(uid))
 }
+
+
+// 添加歌单映射
+export const addMusicListToLocal = function ({commit}, musicListInfo) {
+  commit('ADD_MUSIC_LIST_TO_LOCAL', addMusicList(musicListInfo))
+}
+
+
+// 添加歌曲到歌单
+export const addMusicToCustomList = function ({commit}, {music, id}) {
+  // //console.log("action addMusicToCustomList")
+  // //console.log(listName)
+  // //console.log(music)
+  commit('ADD_MUSIC_TO_CUSTOM_LIST', addSongToCustomList(music, id))
+}
+
+
