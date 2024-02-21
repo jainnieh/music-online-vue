@@ -16,7 +16,7 @@
 
 6. 效果:
 
-   ![image-20240219170415570](https://github.com/jainnieh/music-online-vue/blob/main/screenshots/get-start/get-start/image-20240219170415570.png)
+   ![image-20240219170415570](https://github.com/jainnieh/music-online-vue/blob/main/screenshots/get-start/image-20240219170415570.png)
 
 7. 点击Details, 开启Pin to toolbar
 
